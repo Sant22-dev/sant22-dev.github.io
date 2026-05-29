@@ -1,0 +1,21 @@
+{
+  "name": "ATLAS — PPL Tracker",
+  "short_name": "ATLAS",
+  "description": "Tracker de entrenamiento PPL profesional",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#080808",
+  "theme_color": "#080808",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["health", "fitness", "sports"],
+  "lang": "es"
+}
