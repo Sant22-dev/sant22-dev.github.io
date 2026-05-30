@@ -14,16 +14,24 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#080808;--bg2:#111;--bg3:#181818;--bg4:#222;--bg5:#2a2a2a;
-  --bd:#252525;--bd2:#333;--bd3:#444;
-  --tx:#f5f5f5;--tx2:#999;--tx3:#555;
-  --push:#ff3822;--push2:rgba(255,56,34,.12);--push3:rgba(255,56,34,.25);
-  --pull:#00e5a0;--pull2:rgba(0,229,160,.1);--pull3:rgba(0,229,160,.25);
-  --legs:#9b5de5;--legs2:rgba(155,93,229,.1);--legs3:rgba(155,93,229,.25);
-  --gold:#f5c518;--gold2:rgba(245,197,24,.1);--gold3:rgba(245,197,24,.25);
-  --red:#ff3822;--green:#00e5a0;
+  /* Fondos — escala de oscuros profundos */
+  --bg:#060608;--bg2:#0d0d10;--bg3:#13131a;--bg4:#1a1a22;--bg5:#222230;
+  --bd:#1e1e2a;--bd2:#2a2a38;--bd3:#383850;
+  /* Texto */
+  --tx:#f0f0f8;--tx2:#8888a0;--tx3:#44445a;
+  /* Colores de sesión */
+  --push:#ff4433;--push2:rgba(255,68,51,.1);--push3:rgba(255,68,51,.22);
+  --pull:#00e5b0;--pull2:rgba(0,229,176,.08);--pull3:rgba(0,229,176,.2);
+  --legs:#a066ff;--legs2:rgba(160,102,255,.08);--legs3:rgba(160,102,255,.2);
+  --gold:#f0c028;--gold2:rgba(240,192,40,.08);--gold3:rgba(240,192,40,.2);
+  --red:#ff4433;--green:#00e5b0;
+  /* Layout */
   --st:env(safe-area-inset-top,0px);--sb:env(safe-area-inset-bottom,0px);
-  --hh:56px;--th:44px;
+  --hh:58px;--th:46px;
+  /* Tipografía */
+  --font-display:'Bebas Neue',sans-serif;
+  --font-body:'DM Sans',sans-serif;
+  --font-mono:'JetBrains Mono',monospace;
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;-webkit-font-smoothing:antialiased}
 html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--tx);font-family:'DM Sans',sans-serif;font-size:14px}
@@ -41,9 +49,10 @@ button{cursor:pointer}
 
 /* ── LAYOUT ── */
 #app{height:100%;display:flex;flex-direction:column;padding-top:var(--st)}
-#hdr{height:var(--hh);display:flex;align-items:center;justify-content:space-between;padding:0 16px;border-bottom:1px solid var(--bd);flex-shrink:0;background:var(--bg)}
-.logo{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:4px;color:var(--tx)}
-.logo em{color:var(--gold);font-style:normal}
+#hdr{height:var(--hh);display:flex;align-items:center;justify-content:space-between;padding:0 16px;border-bottom:1px solid var(--bd);flex-shrink:0;background:var(--bg);position:relative}
+#hdr::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold)33,transparent)}
+.logo{font-family:var(--font-display);font-size:28px;letter-spacing:5px;color:var(--tx);text-shadow:0 0 20px rgba(240,192,40,.15)}
+.logo em{color:var(--gold);font-style:normal;text-shadow:0 0 12px rgba(240,192,40,.4)}
 .hbtns{display:flex;gap:6px;align-items:center}
 .hbtn{width:34px;height:34px;border-radius:8px;border:1px solid var(--bd2);background:transparent;color:var(--tx2);display:flex;align-items:center;justify-content:center;font-size:15px;transition:all .15s}
 .hbtn:active{background:var(--bd2)}
@@ -52,12 +61,13 @@ button{cursor:pointer}
 /* ── NAV TABS ── */
 #nav{height:var(--th);display:flex;align-items:flex-end;padding:0 12px;gap:2px;border-bottom:1px solid var(--bd);flex-shrink:0;overflow-x:auto;scrollbar-width:none}
 #nav::-webkit-scrollbar{display:none}
-.ntab{flex-shrink:0;padding:8px 12px 10px;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--tx3);background:transparent;border:none;border-bottom:2px solid transparent;transition:all .15s;white-space:nowrap;margin-bottom:-1px}
-.ntab.push.on{color:var(--push);border-bottom-color:var(--push)}
-.ntab.pull.on{color:var(--pull);border-bottom-color:var(--pull)}
-.ntab.legs.on{color:var(--legs);border-bottom-color:var(--legs)}
-.ntab.spec.on{color:var(--gold);border-bottom-color:var(--gold)}
-.ntab:not(.on):hover{color:var(--tx2)}
+.ntab{flex-shrink:0;padding:9px 14px 11px;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);background:transparent;border:none;border-bottom:2px solid transparent;transition:all .2s ease;white-space:nowrap;margin-bottom:-1px}
+.ntab.push.on{color:var(--push);border-bottom-color:var(--push);text-shadow:0 0 10px rgba(255,68,51,.5)}
+.ntab.pull.on{color:var(--pull);border-bottom-color:var(--pull);text-shadow:0 0 10px rgba(0,229,176,.4)}
+.ntab.legs.on{color:var(--legs);border-bottom-color:var(--legs);text-shadow:0 0 10px rgba(160,102,255,.4)}
+.ntab.spec.on{color:var(--gold);border-bottom-color:var(--gold);text-shadow:0 0 10px rgba(240,192,40,.4)}
+.ntab:not(.on){opacity:.6}
+.ntab:not(.on):active{opacity:1;color:var(--tx2)}
 
 /* ── VIEWS ── */
 #views{flex:1;position:relative;overflow:hidden}
@@ -67,9 +77,12 @@ button{cursor:pointer}
 .vw::-webkit-scrollbar-thumb{background:var(--bd3)}
 
 /* ── SESSION VIEW ── */
-.sv-hero{padding:20px 16px 14px;position:relative}
+.sv-hero{padding:22px 16px 14px;position:relative;background:linear-gradient(180deg,rgba(240,192,40,.02) 0%,transparent 100%)}
 .sv-tag{font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--tx3);margin-bottom:6px}
-.sv-name{font-family:'Bebas Neue',sans-serif;font-size:52px;letter-spacing:2px;line-height:1;color:var(--tx)}
+.sv-name{font-family:var(--font-display);font-size:56px;letter-spacing:3px;line-height:1;color:var(--tx)}
+.push .sv-name{text-shadow:0 0 30px rgba(255,68,51,.15)}
+.pull .sv-name{text-shadow:0 0 30px rgba(0,229,176,.12)}
+.legs .sv-name{text-shadow:0 0 30px rgba(160,102,255,.15)}
 .sv-sub{font-size:12px;color:var(--tx3);margin-top:4px;letter-spacing:.3px}
 .sv-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:middle}
 .sv-prog{padding:0 16px 16px;display:flex;align-items:center;gap:12px}
@@ -96,8 +109,9 @@ button{cursor:pointer}
 .sec-lbl::after{content:'';flex:1;height:1px;background:var(--bd)}
 
 /* ── EXERCISE CARD ── */
-.ec{margin:0 12px 6px;border-radius:12px;background:var(--bg3);border:1px solid var(--bd);overflow:hidden;transition:border-color .2s}
-.ec.open{border-color:var(--bd2)}
+.ec{margin:0 12px 6px;border-radius:14px;background:var(--bg3);border:1px solid var(--bd);overflow:hidden;transition:all .2s ease}
+.ec.open{border-color:var(--bd3);box-shadow:0 4px 24px rgba(0,0,0,.4)}
+.ec-hdr:active{background:var(--bg4)}
 .ec-hdr{padding:12px 14px;display:flex;align-items:center;gap:10px;user-select:none}
 .ec-num{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--tx3);width:18px;text-align:center;flex-shrink:0}
 .ec-name{flex:1;font-size:15px;font-weight:600;color:var(--tx);letter-spacing:-.1px;line-height:1.25}
@@ -140,10 +154,10 @@ button{cursor:pointer}
 .legs .sv-btn{background:var(--legs);color:#fff}
 
 /* ── TIMER ── */
-#tmr{display:none;position:fixed;bottom:calc(20px + var(--sb));right:14px;background:var(--bg3);border:1px solid var(--bd2);border-radius:14px;padding:14px 16px;z-index:200;box-shadow:0 8px 40px rgba(0,0,0,.6);min-width:110px;text-align:center}
+#tmr{display:none;position:fixed;bottom:calc(20px + var(--sb));right:14px;background:rgba(13,13,18,.95);border:1px solid var(--bd2);border-radius:16px;padding:14px 16px;z-index:200;box-shadow:0 8px 40px rgba(0,0,0,.7),0 0 0 1px rgba(240,192,40,.08);min-width:114px;text-align:center;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
 #tmr.vis{display:block}
 .tmr-lbl{font-size:9px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--tx3);margin-bottom:4px}
-#tmr-val{font-family:'JetBrains Mono',monospace;font-size:36px;font-weight:500;color:var(--tx);line-height:1}
+#tmr-val{font-family:var(--font-mono);font-size:38px;font-weight:500;color:var(--tx);line-height:1;letter-spacing:-1px}
 #tmr-val.red{color:var(--push);animation:blink .6s infinite alternate}
 @keyframes blink{to{opacity:.4}}
 .tmr-row{display:flex;gap:5px;margin-top:10px}
@@ -324,7 +338,7 @@ canvas.ch{display:block;width:100%!important}
 @keyframes mouth-talk{from{transform:scaleY(1)}to{transform:scaleY(1.6);transform-origin:45px 47px}}
 .c-mouth-g.stop{animation:none}
 .coach-badge-wrap{position:absolute;top:12px;left:12px;display:flex;align-items:center;gap:8px}
-.coach-avatar-badge{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;border:2px solid rgba(255,255,255,.1);flex-shrink:0}
+.coach-avatar-badge{width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;border:1px solid rgba(255,255,255,.12);flex-shrink:0;backdrop-filter:blur(8px)}
 .coach-name-badge{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--tx)}
 .coach-name-badge span{display:block;font-size:9px;font-weight:400;color:rgba(255,255,255,.35);letter-spacing:1px;margin-top:1px}
 .coach-bubble{position:absolute;top:12px;right:12px;background:rgba(255,255,255,.06);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.1);border-radius:12px 12px 4px 12px;padding:9px 13px;display:flex;align-items:center}
@@ -504,6 +518,11 @@ canvas.ch{display:block;width:100%!important}
   50% { opacity: 1; transform: scale(1.3); }
 }
 
+
+/* ── DROP SET ── */
+.drop-tag{display:inline-block;padding:1px 6px;border-radius:4px;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;background:rgba(255,68,51,.15);color:var(--push);border:1px solid rgba(255,68,51,.25)}
+.s-in.drop-in{border-color:rgba(255,68,51,.3);background:rgba(255,68,51,.04);font-size:12px;min-width:80px;width:80px}
+.s-in.drop-in::placeholder{font-size:10px;letter-spacing:.5px}
 </style>
 </head>
 <body>
@@ -830,9 +849,17 @@ function buildSess(sess,cfg){
     if(drop)h+='<div class="ec-drop">'+drop+'</div>';
     h+='<table class="sets-tbl"><thead><tr><th>Serie</th><th>Obj.R</th><th>Obj.KG</th><th>Reps</th><th>KG</th><th>OK</th></tr></thead><tbody>';
     sets.forEach(function(s,si){
-      var sn=si+1,ci=parseInt(s[0])||10;
-      h+='<tr><td class="s-lbl">S'+sn+'</td><td class="s-obj">'+s[0]+'</td><td class="s-obj">'+s[1]+'</td>';
-      h+='<td><input class="s-in" id="'+eid+'r'+sn+'" type="number" inputmode="numeric" placeholder="—" oninput="ci(this,'+ci+')"></td>';
+      var sn=si+1;
+      var isDrop=s[0].toString().indexOf('drop')>=0;
+      var ci=parseInt(s[0])||10;
+      var rType=isDrop?'text':'number';
+      var rMode=isDrop?'text':'numeric';
+      var rPH=isDrop?'reps+drop':'—';
+      var rClass=isDrop?' drop-in':'';
+      h+='<tr><td class="s-lbl">S'+sn+'</td>';
+      h+='<td class="s-obj">'+(isDrop?'<span class="drop-tag">DROP</span>':s[0])+'</td>';
+      h+='<td class="s-obj">'+s[1]+'</td>';
+      h+='<td><input class="s-in'+rClass+'" id="'+eid+'r'+sn+'" type="'+rType+'" inputmode="'+rMode+'" placeholder="'+rPH+'" oninput="ci(this,'+ci+')"></td>';
       h+='<td><input class="s-in" id="'+eid+'w'+sn+'" type="number" inputmode="numeric" placeholder="—"></td>';
       h+='<td><button class="s-ck" id="ck-'+eid+'-'+sn+'" onclick="ck(\''+sess+'\',\''+eid+'\','+sn+')">○</button></td></tr>';
     });
@@ -1800,58 +1827,58 @@ window.installPWA=function(){if(!_dprompt)return;_dprompt.prompt();_dprompt.user
 // ════════════ COACH ════════════
 var COACH_DATA={
   perfect:{
-    accent:'#00e5a0',mood:'happy',stars:5,
+    accent:'#00e5b0',mood:'happy',stars:5,
     tag:'SESIÓN PERFECTA',
     msgs:[
-      'Completaste todo lo que estaba en el plan. Sin excusas, sin atajos. El músculo no tiene otra opción que adaptarse. Esta semana construiste algo real.',
-      'Cien por ciento. Cada set fue una decisión. Ahora el cuerpo tiene el estímulo exacto — la próxima batalla es la recuperación. Comé las proteínas y dormí.',
-      'Así se entrena. Si los pesos objetivo cerraron, la semana que viene subimos 2kg en esos ejercicios.'
+      'Completaste todo lo que estaba en el plan. Sin excusas, sin atajos. Así se construye el cuerpo que querés — set a set, semana a semana. Ahora el trabajo es la recuperación: proteínas y sueño.',
+      'Cien por ciento. Eso no es suerte, es disciplina ejecutada. El estímulo fue exacto, el músculo tiene todo lo que necesita para crecer. La próxima semana, si los pesos objetivo se cerraron, los subimos.',
+      'Perfecto. Cuando cumplís el plan al 100% el cuerpo no tiene opción — tiene que adaptarse. Seguí así estas semanas y vas a ver cambios reales.'
     ],
     highlights:[
-      {icon:'✅',text:'<strong>Volumen completo</strong> — estímulo exactamente planificado'},
-      {icon:'📈',text:'<strong>Doble progresión activa</strong> — si cerraste los kg objetivo, subimos 2kg la semana que viene'},
-      {icon:'🔄',text:'<strong>Recuperación</strong> — proteínas del plan y sueño profundo, ahí crece el músculo'}
+      {icon:'✅',text:'<strong>Volumen completo</strong> — el músculo recibió el estímulo exactamente planificado'},
+      {icon:'📈',text:'<strong>Progresión activa</strong> — si cerraste los pesos objetivo, la semana que viene subimos 2kg'},
+      {icon:'🔄',text:'<strong>Recuperación ahora</strong> — proteínas + sueño profundo, ahí es donde crece'}
     ]
   },
   good:{
-    accent:'#f5c518',mood:'neutral',stars:4,
+    accent:'#f0c028',mood:'neutral',stars:4,
     tag:'BUEN TRABAJO',
     msgs:[
-      'Buen trabajo. No fue el 100% pero fue honesto. La honestidad en el entrenamiento vale más que la perfección — llegaste, empujaste y terminaste.',
-      'Sólido. Algunos sets no cerraron — normal cuando el cuerpo se adapta a nueva carga. Lo importante es que no bajaste la intensidad.',
-      'La mayoría del trabajo completado. Los últimos sets son donde más cuesta — la próxima vez intentá llegar a ellos con más energía.'
+      'Buen trabajo hoy. No fue el 100% pero fue honesto — llegaste, empujaste y terminaste. En el entrenamiento la consistencia vale más que la perfección. Eso se acumula semana a semana.',
+      'Sólido. Algunos sets no cerraron — normal cuando el cuerpo se adapta a carga nueva. Lo importante es que no bajaste la guardia. La próxima vez llegá más descansado a los últimos ejercicios.',
+      'Bien ejecutado en general. Los sets que no cerraron, revisá si el peso es correcto para esta semana o si llegaste ya fatigado. Eso es información valiosa para ajustar.'
     ],
     highlights:[
       {icon:'💪',text:'<strong>Buen volumen</strong> — más del 75% completado con calidad'},
-      {icon:'⚡',text:'<strong>Área de mejora</strong> — revisá si llegaste fatigado o el peso es muy alto'},
-      {icon:'🎯',text:'<strong>Próxima vez</strong> — protegé los últimos sets de cada ejercicio'}
+      {icon:'⚡',text:'<strong>Área a mejorar</strong> — revisá si llegás fatigado a los ejercicios finales'},
+      {icon:'🎯',text:'<strong>Foco semana que viene</strong> — protegé los últimos sets de cada grupo muscular'}
     ]
   },
   incomplete:{
-    accent:'#ff3822',mood:'serious',stars:2,
-    tag:'HAY QUE MEJORAR',
+    accent:'#ff4433',mood:'serious',stars:2,
+    tag:'NECESITAMOS HABLAR',
     msgs:[
-      'Menos del 75%. El cuerpo responde exactamente a lo que le exigís. Tres preguntas: dormiste bien, comiste antes del entreno, el peso está bien calibrado?',
-      'El plan está diseñado para ser difícil pero alcanzable. Si no se puede completar hay algo a revisar — peso, alimentación, sueño o recuperación.',
-      'Hoy faltó intensidad. La próxima sesión: empujá un rep más de lo que creés que podés.'
+      'Menos del 75% completado. El cuerpo responde exactamente a lo que le exigís — ni más ni menos. Antes de la próxima sesión, revisá tres cosas: sueño, alimentación pre-entreno y si los pesos objetivo están bien calibrados.',
+      'Hoy faltó intensidad. No te lo digo para hacerte sentir mal, te lo digo porque conozco tu potencial y sé que podés más. La próxima sesión: cerrá los ojos antes del último set difícil y empujá un rep más.',
+      'El plan está diseñado para ser exigente pero alcanzable. Si no se puede completar, hay algo a ajustar. Mandame los datos de hoy y lo analizamos — puede ser el peso, el sueño o la recuperación.'
     ],
     highlights:[
-      {icon:'⚠️',text:'<strong>Volumen insuficiente</strong> — por debajo del umbral mínimo para generar adaptación'},
-      {icon:'🔍',text:'<strong>Revisá</strong> — sueño, alimentación pre-entreno y si los pesos objetivo son realistas'},
-      {icon:'💬',text:'<strong>Mandame los datos</strong> — si algo necesita ajuste lo analizamos'}
+      {icon:'⚠️',text:'<strong>Volumen insuficiente</strong> — el estímulo estuvo por debajo del umbral de adaptación'},
+      {icon:'🔍',text:'<strong>Revisá</strong> — sueño, comida pre-entreno y si los pesos objetivo son realistas esta semana'},
+      {icon:'💬',text:'<strong>Contame</strong> — mandame los datos y ajustamos el plan si es necesario'}
     ]
   },
   drop_missed:{
-    accent:'#ff3822',mood:'serious',stars:3,
+    accent:'#ff4433',mood:'serious',stars:3,
     tag:'FALTÓ EL DROP SET',
     msgs:[
-      'Todo bien en general, pero faltó el drop set. Ese momento — cuando ya no querés más y bajás el peso para seguir — es donde ocurre el crecimiento real.',
-      'El drop set no es opcional. Es el estímulo de alta intensidad que diferencia una sesión buena de una excelente. Sin descanso: bajá 30-40% y hasta el fallo.'
+      'Todo bien en general, pero el drop set que salteaste es exactamente el momento donde el músculo crece más. Cuando ya no podés más y bajás el peso para seguir — ese es el estímulo real. La próxima vez: no pienses, simplemente bajá el peso y seguí.',
+      'El drop set no es opcional en este plan. Es el estímulo de alta intensidad que diferencia una sesión buena de una excelente. Esta semana que viene: terminás las reps normales, bajás 30-40% el peso en 5 segundos y vas hasta el fallo absoluto. Sin descanso entre.'
     ],
     highlights:[
-      {icon:'🔥',text:'<strong>Drop set no ejecutado</strong> — mayor estrés metabólico, no se saltea'},
-      {icon:'📋',text:'<strong>Cómo</strong> — terminás las reps → bajás el peso en 5 seg → seguís hasta fallo absoluto'},
-      {icon:'⏱️',text:'<strong>Sin descanso entre</strong> — la efectividad está en la continuidad'}
+      {icon:'🔥',text:'<strong>Drop set no ejecutado</strong> — es el mayor estrés metabólico de la sesión, no se saltea'},
+      {icon:'📋',text:'<strong>Cómo hacerlo</strong> — reps normales → 5 seg → bajar peso 30-40% → fallo absoluto'},
+      {icon:'⏱️',text:'<strong>Sin descanso entre</strong> — la continuidad del estímulo es lo que lo hace efectivo'}
     ]
   }
 };
@@ -2184,9 +2211,12 @@ function closeCoach(){
 document.addEventListener('DOMContentLoaded', function(){
   buildSessions();
   lN();
-  gT('pusha');
-  // Restaurar estados guardados de todas las sesiones
+  // Restaurar estados guardados
   Object.keys(SC).forEach(function(sess){restoreState(sess);});
+  // Abrir el entrenamiento que toca hoy
+  var dayMap={1:'pusha',2:'pulla',3:'legsa',4:'pushb',5:'pullb',6:'legsb',0:'hist'};
+  var todaySess=dayMap[new Date().getDay()];
+  gT(todaySess||'pusha');
 
   // Ocultar splash después de 1.4s
   setTimeout(function(){
@@ -2229,8 +2259,8 @@ document.addEventListener('DOMContentLoaded', function(){
 
       <!-- Badge -->
       <div class="coach-badge-wrap">
-        <div class="coach-avatar-badge" id="coach-avatar-badge">⚔️</div>
-        <div class="coach-name-badge">MAXIMUS<span id="coach-name-sub">Gladiador / Entrenador</span></div>
+        <div class="coach-avatar-badge" id="coach-avatar-badge">💪</div>
+        <div class="coach-name-badge">COACH ATLAS<span id="coach-name-sub">Entrenador Personal</span></div>
       </div>
 
       <!-- Burbuja de diálogo -->
